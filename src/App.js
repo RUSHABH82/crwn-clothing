@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          React Sikho 1
+          React Sikho
         </a>
       </header>
     </div>
