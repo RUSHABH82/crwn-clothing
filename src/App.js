@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          React Sikho lol
+          React Sikho lol guys
         </a>
       </header>
     </div>
