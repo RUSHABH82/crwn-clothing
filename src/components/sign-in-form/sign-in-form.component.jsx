@@ -7,7 +7,7 @@ import {
 } from "../../utils/firebase/firebase.utils";
 import { FormInput } from "../form-input/form-input.componet";
 import "./sign-in-form.styles.scss";
-import { Button, BUTTON_TYPE_CLASSES } from "../button/button.component";
+import { Button } from "../button/button.component";
 
 const defaultField = {
   email: "",
@@ -17,6 +17,7 @@ const defaultField = {
 export const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultField);
   const { email, password } = formFields;
+
 
   const resetFormFields = () => setFormFields(defaultField);
 
@@ -73,11 +74,7 @@ export const SignInForm = () => {
         />
         <div className="buttons-container">
           <Button type="submit">Sign In</Button>
-          <Button
-            type="button"
-            buttonType={BUTTON_TYPE_CLASSES.google}
-            onClick={logGoogleUser}
-          >
+          <Button type="button" buttonType="google" onClick={logGoogleUser}>
             google Sign-In
           </Button>
         </div>
