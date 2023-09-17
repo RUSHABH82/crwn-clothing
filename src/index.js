@@ -3,24 +3,27 @@ import ReactDOM from "react-dom/client";
 import "./index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter } from "react-router-dom";
-import { UserProvider } from "./components/context/user.context";
-import { CategoryProvider } from "./components/context/categories.context";
-import { CartProvider } from "./components/context/cart.context";
+import {BrowserRouter} from "react-router-dom";
+import {CategoryProvider} from "./components/context/categories.context";
+import {CartProvider} from "./components/context/cart.context";
+import {Provider} from "react-redux";
+import {store} from "./store/store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <UserProvider>
-        <CategoryProvider>
-          <CartProvider>
-            <App />
-          </CartProvider>
-        </CategoryProvider>
-      </UserProvider>
-    </BrowserRouter>
-  </React.StrictMode>
+    <React.StrictMode>
+        <Provider store={store}>
+            <BrowserRouter>
+                {/* <UserProvider>*/}
+                {/*<CategoryProvider>*/}
+                    <CartProvider>
+                        <App/>
+                    </CartProvider>
+                {/*</CategoryProvider>*/}
+                {/*</UserProvider>*/}
+            </BrowserRouter>
+        </Provider>
+    </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
