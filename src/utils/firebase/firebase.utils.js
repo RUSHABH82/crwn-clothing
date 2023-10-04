@@ -64,9 +64,11 @@ export const db = getFirestore();
 
 export const createUserDocumentFromAuth = async (userAuth, additionalInfo) => {
     const userDocRef = doc(db, "users", userAuth.uid);
-    const userSanpShot = await getDoc(userDocRef);
+    const userSnapshot = await getDoc(userDocRef);
 
-    if (!userSanpShot.exists()) {
+
+
+    if (!userSnapshot.exists()) {
         const {displayName, email} = userAuth;
         const createdAt = new Date();
 
@@ -81,7 +83,7 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInfo) => {
             console.log("error creating the user", error.message);
         }
     }
-    return userDocRef;
+    return userSnapshot;
 };
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
@@ -100,3 +102,16 @@ export const signOutUser = () => signOut(auth);
 
 export const onAuthStateChangedListener = (callBack) =>
     onAuthStateChanged(auth, callBack);
+
+export const getCurrentUser = () => {
+    return new Promise(
+        (resolve, reject) => {
+            const unsubscribe = onAuthStateChanged(
+                auth,
+                (userAuth) => {
+                    unsubscribe();
+                    resolve(userAuth);
+                },
+                reject)
+        });
+}

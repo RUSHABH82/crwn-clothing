@@ -6,21 +6,13 @@ import {Authentication} from "./components/routes/authentication/authentication.
 import {Shop} from "./components/routes/shop/shop.component";
 import {Checkout} from "./components/routes/checkout/checkout.component";
 import {useDispatch} from "react-redux";
-import {createUserDocumentFromAuth, onAuthStateChangedListener} from "./utils/firebase/firebase.utils";
-import {setCurrentUser} from "./store/user/user.action";
+import {checkUserSession} from "./store/user/user.action";
 
 const App = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChangedListener((user) => {
-            if (user) {
-                createUserDocumentFromAuth(user);
-            }
-            dispatch(setCurrentUser(user));
-        });
-
-        return unsubscribe;
+        dispatch(checkUserSession())
     }, [dispatch]);
 
     return (
