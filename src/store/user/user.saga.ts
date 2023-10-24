@@ -11,11 +11,13 @@ import {all, call, put, takeLatest} from "typed-redux-saga/macro";
 import {USER_ACTION_TYPES} from "./user.types";
 import {
     EmailSignInStart,
+    SignUpStart,
+    SignUpSuccess,
     signInFailed,
     signInSuccess,
     signOutFailed,
     signOutSuccess,
-    signUpFailed, SignUpStart, SignUpSuccess,
+    signUpFailed,
     signUpSuccess
 } from "./user.action";
 import {User} from "firebase/auth";
@@ -62,10 +64,10 @@ export function* signInWithEmail({payload: {email, password}}: EmailSignInStart)
     }
 }
 
-export function* signUp({payload: {email, password, displayName}}:SignUpStart) {
+export function* signUp({payload: {email, password, displayName}}: SignUpStart) {
     try {
         const userCredential = yield* call(createAuthUserWithEmailAndPassword, email, password)
-        if(userCredential){
+        if (userCredential) {
             const {user} = userCredential;
             yield* put(signUpSuccess(user, {displayName}))
         }
@@ -83,7 +85,7 @@ export function* signOut() {
     }
 }
 
-export function* signInAfterSignUp({payload: {user, additionalDetails}}:SignUpSuccess) {
+export function* signInAfterSignUp({payload: {user, additionalDetails}}: SignUpSuccess) {
     yield* call(getSnapShotFromUserAuth, user, additionalDetails)
 }
 
