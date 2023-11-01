@@ -9,6 +9,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {selectCurrentUser} from "../../../store/user/user.selector";
 import {selectIsCartOpen} from "../../../store/cart/cart.selector";
 import {signOutStart} from "../../../store/user/user.action";
+import {StyledTarget} from "styled-components/dist/types";
 
 export const Navigation = () => {
     const dispatch = useDispatch();
@@ -29,7 +30,7 @@ export const Navigation = () => {
                         <div>SHOP</div>
                     </NavLink>
                     {currentUser ? (
-                        <NavLink as="span" onClick={signOutUser}>
+                        <NavLink to="/auth" as="span" onClick={signOutUser}>
                             Logout
                         </NavLink>
                     ) : (

@@ -1,9 +1,9 @@
-import React, {useState} from "react";
+import React, {ChangeEvent, FormEvent, useState} from "react";
 import {FormInput} from "../form-input/form-input.componet";
-import "./sign-in-form.styles.scss";
 import {Button, BUTTON_TYPE_CLASSES} from "../button/button.component";
 import {useDispatch} from "react-redux";
 import {emailSignInStart, googleSignInStart} from "../../store/user/user.action";
+import {ButtonsContainer, SignInContainer} from "./sign-in-form.styles";
 
 const defaultField = {
     email: "",
@@ -17,7 +17,7 @@ export const SignInForm = () => {
 
     const resetFormFields = () => setFormFields(defaultField);
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         try {
             dispatch(emailSignInStart(email, password))
@@ -26,7 +26,7 @@ export const SignInForm = () => {
         }
     };
 
-    const handleChange = (event) => {
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const {name, value} = event.target;
         setFormFields({...formFields, [name]: value});
     };
@@ -36,7 +36,7 @@ export const SignInForm = () => {
     };
 
     return (
-        <div className="sign-in-container">
+        <SignInContainer>
             <h2>I already have an account?</h2>
             <span>Sign in with your email and password</span>
             <form onSubmit={handleSubmit}>
@@ -56,7 +56,7 @@ export const SignInForm = () => {
                     value={password}
                     required
                 />
-                <div className="buttons-container">
+                <ButtonsContainer>
                     <Button type="submit">Sign In</Button>
                     <Button
                         type="button"
@@ -65,8 +65,8 @@ export const SignInForm = () => {
                     >
                         google Sign-In
                     </Button>
-                </div>
+                </ButtonsContainer>
             </form>
-        </div>
+        </SignInContainer>
     );
 };

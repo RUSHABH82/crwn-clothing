@@ -20,7 +20,7 @@ import {
     signUpFailed,
     signUpSuccess
 } from "./user.action";
-import {User} from "firebase/auth";
+import {AuthError, AuthErrorCodes, User} from "firebase/auth";
 
 export function* getSnapShotFromUserAuth(userAuth: User, additionalDetails?: AdditionalInformation) {
     try {
