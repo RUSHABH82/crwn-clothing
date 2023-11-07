@@ -9,9 +9,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {selectCurrentUser} from "../../../store/user/user.selector";
 import {selectIsCartOpen} from "../../../store/cart/cart.selector";
 import {signOutStart} from "../../../store/user/user.action";
-import {StyledTarget} from "styled-components/dist/types";
 
-export const Navigation = () => {
+const Navigation = () => {
     const dispatch = useDispatch();
     const currentUser = useSelector(selectCurrentUser);
     const isCartOpen = useSelector(selectIsCartOpen);
@@ -46,3 +45,5 @@ export const Navigation = () => {
         </Fragment>
     );
 };
+
+export default Navigation;

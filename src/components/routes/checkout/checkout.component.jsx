@@ -4,7 +4,7 @@ import {CheckoutItem} from "../../checkout-item/checkout-item.component";
 import {useSelector} from "react-redux";
 import {selectCartItems, selectCartTotal} from "../../../store/cart/cart.selector";
 
-export const Checkout = () => {
+const Checkout = () => {
 
     const cartItems = useSelector(selectCartItems);
     const cartTotal = useSelector(selectCartTotal);
@@ -35,3 +35,4 @@ export const Checkout = () => {
         </div>
     );
 };
+export default Checkout;

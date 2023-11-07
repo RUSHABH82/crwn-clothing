@@ -5,13 +5,11 @@ import {useEffect} from "react";
 import {useDispatch} from "react-redux";
 import {fetchCategoriesStart} from "../../../store/categories/categories.action";
 
-export const Shop = () => {
-
+const Shop = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(fetchCategoriesStart());
     }, [dispatch]);
-
     return (
         <Routes>
             <Route index element={<CategoriesPreview/>}/>
@@ -19,3 +17,4 @@ export const Shop = () => {
         </Routes>
     );
 };
+export default Shop;
